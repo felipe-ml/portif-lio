@@ -1,0 +1,29 @@
+# Previsão de Vendas por Região
+
+Este projeto tem como objetivo a análise e previsão de vendas para diferentes grupos de produtos em várias regiões ao longo do tempo, utilizando dados históricos e técnicas de séries temporais. O modelo é capaz de prever as vendas futuras de cada grupo de produto, permitindo uma melhor tomada de decisão para estratégias de vendas.
+
+## Estrutura do Projeto
+
+O projeto é composto pelas seguintes etapas principais:
+
+1. **Importação dos Dados**: Leitura de um arquivo Excel contendo os dados históricos de vendas.
+2. **Pré-processamento de Dados**: Ajuste e formatação dos dados para análise, incluindo a conversão de colunas de data e agrupamento dos dados por região e mês.
+3. **Análise Exploratória**: Análise visual das vendas, utilizando gráficos para identificar tendências sazonais e variações.
+4. **Estimação de Tendência**: Transformação dos dados utilizando logaritmos e médias móveis para estimar tendências de vendas.
+5. **Modelo SARIMA**: Implementação do modelo SARIMAX para previsão de vendas, levando em consideração tanto a tendência quanto a sazonalidade dos dados.
+6. **Previsões**: Geração das previsões de vendas para os próximos períodos.
+
+## Dependências
+
+Este projeto requer as seguintes bibliotecas Python:
+
+- `pandas`: Para manipulação e análise de dados.
+- `matplotlib`: Para visualização de dados.
+- `statsmodels`: Para modelagem de séries temporais e previsão.
+- `numpy`: Para operações matemáticas e manipulação de arrays.
+- `openpyxl`: Para leitura de arquivos Excel.
+
+Você pode instalar as dependências utilizando o seguinte comando:
+
+```bash
+pip install pandas matplotlib statsmodels numpy openpyxl
