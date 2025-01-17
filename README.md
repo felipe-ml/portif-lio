@@ -1,129 +1,93 @@
-README: Housing Analysis and Machine Learning Pipeline
-
-Overview
-
-This project involves the analysis and prediction of housing prices using machine learning techniques. The code provided demonstrates how to load, preprocess, and model data for predictive analysis. It also includes visualization, correlation analysis, and model tuning to improve performance.
-
-Prerequisites
-
-Python 3.7+
-
-Required Libraries:
-
-pandas
-
-numpy
-
-matplotlib
-
-scikit-learn
-
-Dataset
-
-The dataset, housing.csv, should be placed in the same directory as the notebook or loaded into Colab’s /content/ directory. It contains features such as geographical data, population, and median income.
-
-Key Sections
-
-1. Data Loading
-
-The dataset is loaded using Pandas:
-
-df = pd.read_csv('/content/housing.csv')
-
-2. Exploratory Data Analysis (EDA)
-
-Visualized data distributions using histograms.
-
-Examined geographical data using scatter plots.
-
-Correlation analysis was conducted to identify relationships between features.
-
-3. Data Preprocessing
-
-Splitting Data:
-
-Data was split into training and testing sets using multiple methods:
-
-Random Splits: train_test_split from sklearn.
-
-Stratified Sampling: To ensure income categories are proportionally represented.
-
-Feature Engineering:
-
-Created new features:
-
-rooms_per_household
-
-bedrooms_per_room
-
-population_per_household
-
-Handling Missing Data:
-
-Imputed missing values using median strategy with SimpleImputer.
-
-Encoding Categorical Features:
-
-Applied one-hot encoding for the ocean_proximity feature.
-
-4. Machine Learning Models
-
-Models Trained:
-
-Linear Regression
-
-Decision Tree Regressor
-
-Random Forest Regressor
-
-Model Evaluation:
-
-Root Mean Squared Error (RMSE) was calculated for each model.
-
-Cross-validation was used to ensure robustness.
-
-Hyperparameter Tuning:
-
-Used GridSearchCV to optimize Random Forest hyperparameters.
-
-5. Feature Importance
-
-Analyzed the importance of features in the Random Forest model to understand their impact on predictions.
-
-Results
-
-The Random Forest model outperformed other models in terms of RMSE after hyperparameter tuning.
-
-Key influential features included median_income and engineered attributes like rooms_per_household.
-
-Visualization
-
-Visualizations were used to:
-
-Analyze geographical data.
-
-Understand feature distributions.
-
-Visualize correlations and model predictions.
-
-How to Run
-
-Load the Dataset: Ensure the housing.csv file is available at the correct path.
-
-Install Required Libraries:
-
-pip install pandas numpy matplotlib scikit-learn
-
-Execute the Notebook: Use Google Colab or Jupyter Notebook to run the code.
-
-Future Improvements
-
-Use additional feature engineering techniques.
-
-Experiment with other machine learning algorithms like Gradient Boosting or XGBoost.
-
-Deploy the final model using Flask or FastAPI for real-world applications.
-
-Acknowledgements
-
-This project is inspired by machine learning workflows and demonstrates key techniques for housing price prediction.
+# Projeto de Previsão de Valores Imobiliários
+
+## Descrição
+Este projeto implementa uma solução completa para previsão de valores de imóveis com base em dados geográficos, socioeconômicos e estruturais. Ele segue o fluxo de desenvolvimento de um modelo de aprendizado supervisionado, desde a preparação dos dados até a validação de modelos de regressão.
+
+---
+
+## Estrutura do Projeto
+1. **Leitura e Análise Inicial dos Dados**
+   - O conjunto de dados `housing.csv` é carregado utilizando `pandas`.
+   - Análises básicas incluem verificação do cabeçalho e informações gerais do DataFrame.
+
+2. **Divisão dos Dados**
+   - Implementação manual e com bibliotecas de métodos para dividir o conjunto em treino e teste:
+     - Divisão aleatória.
+     - Divisão utilizando o último byte do hash (método de hashlib).
+     - Uso do `train_test_split` da biblioteca Scikit-Learn.
+   - Estratificação dos dados com base na renda mediana.
+
+3. **Visualização de Dados**
+   - Diagramas de dispersão para analisar padrões geográficos e características populacionais.
+   - Visualização de correlações com base no coeficiente de Pearson e gráficos de dispersão.
+
+4. **Preparação dos Dados**
+   - Transformações numéricas e categóricas:
+     - Imputação de valores faltantes com a mediana.
+     - Codificação one-hot para atributos categóricos.
+   - Atributos derivados criados incluem:
+     - Quartos por domicílio.
+     - Habitantes por domicílio.
+     - Quartos por número total de cômodos.
+
+5. **Construção de Pipelines**
+   - Criação de pipelines de transformação para lidar separadamente com dados numéricos e categóricos.
+   - Combinação dos pipelines em uma única etapa com `FeatureUnion`.
+
+6. **Modelos de Regressão**
+   - Treinamento e avaliação de modelos de regressão:
+     - Regressão linear.
+     - Árvore de decisão.
+     - Regressor de floresta aleatória.
+   - Utilização de validação cruzada (k-fold) para medir desempenho.
+
+7. **Ajuste de Hiperparâmetros**
+   - Uso do `GridSearchCV` para encontrar a melhor combinação de hiperparâmetros para o modelo de regressão com floresta aleatória.
+   - Análise das importâncias de atributos.
+
+---
+
+## Requisitos
+- Python 3.x
+- Bibliotecas:
+  - pandas
+  - numpy
+  - matplotlib
+  - scikit-learn
+
+---
+
+## Como Executar
+1. **Pré-requisitos**
+   - Instale as bibliotecas necessárias utilizando `pip install -r requirements.txt`.
+
+2. **Execução**
+   - Garanta que o arquivo `housing.csv` esteja no mesmo diretório do código.
+   - Execute o script ou notebook em um ambiente Python compatível (como Jupyter Notebook ou Google Colab).
+
+3. **Personalização**
+   - Ajuste o parâmetro de estratificação (`income_cat`) para explorar diferentes distribuições de renda.
+   - Experimente novos hiperparâmetros no `GridSearchCV` para aprimorar o desempenho do modelo.
+
+---
+
+## Resultados Esperados
+- Predições dos valores medianos das casas com base em variáveis preditoras.
+- Avaliação quantitativa dos modelos por meio do RMSE (Raiz do Erro Quadrático Médio).
+- Análise das importâncias relativas dos atributos no modelo ajustado.
+
+---
+
+## Limitações
+- O conjunto de dados é limitado a uma região específica.
+- O modelo pode superestimar ou subestimar se houver variáveis não incluídas.
+
+---
+
+## Contribuições
+Contribuições são bem-vindas! Sinta-se à vontade para criar issues ou pull requests.
+
+---
+
+## Autor
+- Este código foi desenvolvido como parte de um exercício baseado em aprendizado de máquina.
